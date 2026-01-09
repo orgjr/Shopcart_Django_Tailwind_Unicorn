@@ -1,0 +1,44 @@
+{% load static %}
+{% load unicorn %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'core/css/output.css' %}">
+    {% unicorn_scripts %}
+  </head>
+  <body>
+    {% csrf_token %}
+
+    <nav class="rounded-lg border shadow-lg overflow-hidden p-2 bg-white border-stone-200 shadow-stone-950/5 mx-auto w-full max-w-screen-xl">
+      <div class="flex items-center">
+        <a href="{% url 'index' %}" class="font-sans antialiased text-sm text-current mx-2 block py-1 font-semibold">Shop Cart System</a>
+        <div class="hidden lg:ml-auto lg:mr-2 lg:block">
+          <ul class="m-2 flex flex-col gap-x-3 gap-y-1 lg:m-0 lg:flex-row lg:items-center">
+            {% if user.is_authenticated %}
+              <li>
+                <a href="{% url 'cart' %}" class="font-sans antialiased text-sm text-current p-1 hover:text-primary">Shop Cart</a>
+              </li>
+            {% endif %}
+            {% if user.is_anonymous %}
+              <li>
+                <a href="{% url 'login' %}" class="font-sans antialiased text-sm text-current p-1 hover:text-primary">Login</a>
+              </li>
+            {% else %}
+              <li>
+                <form action="{% url 'logout' %}" id="logout-form" name="logout" method="POST">
+                  {% csrf_token %}
+                  <button type="submit" class="font-sans antialiased text-sm text-current p-1 hover:text-primary cursor-pointer">Logout</button>
+                </form>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+
+    </nav>
+
+    {% block content%} {% endblock %}
+    <script src="{% static 'core/js/script.js' %}"></script>
+  </body>
+</html>
