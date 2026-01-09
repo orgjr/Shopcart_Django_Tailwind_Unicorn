@@ -103,9 +103,9 @@ shop_cart_unicorn/
 
 ## Usage
 
-1. **Browse Products**
+1. **Home Page**
 
-   - Visit the home page to view available products
+   - Visit the home page and navigate through options
    - No login required to browse
 
 2. **User Authentication**
