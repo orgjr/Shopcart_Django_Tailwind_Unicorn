@@ -25,7 +25,7 @@ A modern, interactive shopping cart application built with Django and Django Uni
 
 - **Backend**: Django 6.0
 - **Frontend**:
-  - HTML, JavaScript
+  - HTML, 
   - Tailwind CSS for styling
 - **Real-time Updates**: Django Unicorn
 - **Database**: SQLite (default)
