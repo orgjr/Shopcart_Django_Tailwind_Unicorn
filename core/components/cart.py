@@ -1,6 +1,8 @@
 from decimal import Decimal
+
 from django_unicorn.components import UnicornView
-from core.models import Product, UserItem
+
+from core.models import Cart, Product
 
 
 class CartView(UnicornView):
@@ -24,7 +26,7 @@ class CartView(UnicornView):
         self.products = list(Product.objects.values("id", "name", "price"))
 
     def load_cart(self):
-        items = UserItem.objects.filter(user_id=self.user).select_related("product")
+        items = Cart.objects.filter(user_id=self.user).select_related("product")
 
         self.cart_items = [
             {
@@ -43,7 +45,7 @@ class CartView(UnicornView):
     # ---------- ACTIONS ----------
 
     def add_item(self, product_id: int):
-        item, created = UserItem.objects.get_or_create(
+        item, created = Cart.objects.get_or_create(
             user_id=self.user,
             product_id=product_id,
         )
@@ -54,7 +56,7 @@ class CartView(UnicornView):
         self.load_cart()
 
     def remove_item(self, product_id: int):
-        item = UserItem.objects.get(user_id=self.user, product_id=product_id)
+        item = Cart.objects.get(user_id=self.user, product_id=product_id)
         if item.quantity > 1:
             item.quantity -= 1
             item.save()
@@ -64,5 +66,5 @@ class CartView(UnicornView):
         self.load_cart()
 
     def clear_cart(self):
-        UserItem.objects.filter(user_id=self.user).delete()
+        Cart.objects.filter(user_id=self.user).delete()
         self.load_cart()
