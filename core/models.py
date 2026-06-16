@@ -1,8 +1,15 @@
+from datetime import datetime
+
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator
 from django.db import models
 
 # Create your models here.
+
+
+# return database registered users after the chosen date
+def get_users_created_after_date(year, month, day):
+    return User.objects.filter(date_joined__gt=datetime(year, month, day))
 
 
 class Product(models.Model):
