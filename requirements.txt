@@ -9,7 +9,7 @@ Django==6.0
 django-browser-reload==1.21.0
 django-unicorn==0.62.0
 djhtml==3.0.10
-djlint==1.36.4
+djlint==1.39.2
 EditorConfig==0.17.1
 jsbeautifier==1.15.4
 json5==0.14.0
