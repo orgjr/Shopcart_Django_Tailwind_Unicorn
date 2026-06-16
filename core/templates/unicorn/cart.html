@@ -4,94 +4,57 @@
       <h2 class="text-lg font-semibold">Hello, {{ user_name }}!</h2>
       <p class="text-base">You are in shop cart's page.</p>
     </div>
-
-  <!-- GRID PRINCIPAL -->
+    <!-- GRID PRINCIPAL -->
     <div class="grid gap-8 lg:grid-cols-[1fr_320px]">
-
-    <!-- PRODUTOS -->
+      <!-- PRODUTOS -->
       <div class="mb-auto grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-
         {% for product in products %}
           <div class="text-base max-w-48 max-h-40 rounded-lg border border-gray-200 p-4 shadow-sm">
-            <h2 class="font-semibold text-gray-800">
-              {{product.name}}
-            </h2>
-
-            <p class="mt-1 font-bold text-green-600 text-sm">
-              ${{product.price}}
-            </p>
-
-            <button
-              class="text-sm mt-6 w-24 rounded bg-blue-600 px-2 py-1 text-white hover:bg-blue-700 transition"
-              unicorn:click="add_item( {{product.id}} )">
-              Add to Cart
-            </button>
+            <h2 class="font-semibold text-gray-800">{{ product.name }}</h2>
+            <p class="mt-1 font-bold text-green-600 text-sm">${{ product.price }}</p>
+            <button class="text-sm mt-6 w-24 rounded bg-blue-600 px-2 py-1 text-white hover:bg-blue-700 transition"
+                    unicorn:click="add_item( {{ product.id }} )">Add to Cart</button>
           </div>
         {% endfor %}
-
       </div>
-
-    <!-- CARRINHO -->
+      <!-- CARRINHO -->
       <div class="text-base w-full max-w-[320px] rounded-lg border border-gray-200 p-4 shadow-sm h-fit">
-        <h2 class="mb-3 font-semibold text-gray-800">
-          Shop Cart
-        </h2>
-
+        <h2 class="mb-3 font-semibold text-gray-800">Shop Cart</h2>
         {% if cart_items %}
           <ul class="divide-y">
             {% for item in cart_items %}
               <li class="w-full py-2">
-
                 <div class="grid grid-cols-3 w-full items-center text-center">
-
-        <!-- Coluna 1 -->
+                  <!-- Coluna 1 -->
                   <div>
-                    <p class="font-medium">
-                      {{ item.name }}
-                    </p>
+                    <p class="font-medium">{{ item.name }}</p>
                   </div>
-
-        <!-- Coluna 2 -->
+                  <!-- Coluna 2 -->
                   <div>
-                    <p class="text-sm text-gray-500">
-                      {{ item.quantity }} × $ {{ item.price }}
-                    </p>
+                    <p class="text-sm text-gray-500">{{ item.quantity }} × $ {{ item.price }}</p>
                   </div>
-
-        <!-- Coluna 3 -->
+                  <!-- Coluna 3 -->
                   <div>
-                    <button
-                      class="mx-auto block rounded px-2 py-1 text-xs text-red-600 hover:bg-red-50"
-                      unicorn:click="remove_item( {{item.product_id}} )">
-                      Remover
-                    </button>
+                    <button class="mx-auto block rounded px-2 py-1 text-xs text-red-600 hover:bg-red-50"
+                            unicorn:click="remove_item( {{ item.product_id }} )">Remover</button>
                   </div>
-
                 </div>
-
               </li>
             {% endfor %}
           </ul>
-
           <div class="mt-3 flex justify-between font-semibold text-gray-800">
             <span>Total</span>
             <span class="text-sm">$ {{ total }}</span>
           </div>
-
           <div class="mt-3 flex gap-2">
-            <button class="rounded bg-red-100 px-3 py-1 text-base text-red-700 hover:bg-red-200" unicorn:click="clear_cart">
-              Limpar
-            </button>
-            <button class="rounded bg-green-600 px-3 py-1 text-base text-white hover:bg-green-700">
-              Finalizar
-            </button>
+            <button class="rounded bg-red-100 px-3 py-1 text-base text-red-700 hover:bg-red-200"
+                    unicorn:click="clear_cart">Limpar</button>
+            <button class="rounded bg-green-600 px-3 py-1 text-base text-white hover:bg-green-700">Finalizar</button>
           </div>
         {% else %}
           There are no products in your cart.
         {% endif %}
-
       </div>
-
     </div>
   </main>
 </div>
