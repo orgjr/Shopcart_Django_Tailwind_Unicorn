@@ -1,4 +1,6 @@
+from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
+
 from core.models import Product
 
 
@@ -17,3 +19,6 @@ class Command(BaseCommand):
         Product.objects.get_or_create(name="Algodão", price=3.50)
 
         Product.objects.get_or_create(name="Óleo de soja", price=8.19)
+
+        User.objects.create_user(username="user", password="123")
+        User.objects.create_superuser(username="adm", password="123")
