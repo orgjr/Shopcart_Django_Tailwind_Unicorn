@@ -20,7 +20,7 @@ Simple shopping cart application built with Django and Django Unicorn to explore
 ## Running with Docker
 
 ```bash
-docker compose up --build
+docker compose -f compose.yaml up --build -d
 ```
 
 Application available at:
@@ -38,6 +38,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 
 python manage.py migrate
+python manage.py populate
 python manage.py runserver
 ```
 
