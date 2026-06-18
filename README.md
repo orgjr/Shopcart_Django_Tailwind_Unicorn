@@ -23,13 +23,7 @@ Simple shopping cart application built with Django and Django Unicorn to explore
 docker compose -f compose.yaml up --build -d
 ```
 
-Application available at:
-
-```text
-http://localhost:8000
-```
-
-## Local Development
+## Running with Django
 
 ```bash
 python -m venv .venv
@@ -40,6 +34,12 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py populate
 python manage.py runserver
+```
+
+Application available at:
+
+```text
+http://localhost:8000
 ```
 
 ## Notes
