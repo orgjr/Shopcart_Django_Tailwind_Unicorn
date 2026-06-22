@@ -1,17 +1,9 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{% static 'core/css/output.css' %}">
-        <title>{% block title %}Logout{% endblock title %}</title>
-    </head>
-    <body>
-        <div class="mx-20 mt-10">
-            <h2 class="text-xl font-semibold">You Logged out correctly.</h2>
-            <p class="text-base">redirecting...</p>
-        </div>
-        <meta http-equiv="refresh" content="3;url={% url 'index' %}">
-    </body>
-</html>
+{% extends "core/base.html" %}
+{% block content %}
+    <title>{% block title %}Logout{% endblock title %}</title>
+    <div class="p-20">
+        <h2 class="text-xl font-semibold">You Logged out correctly.</h2>
+        <p class="text-base">redirecting...</p>
+    </div>
+    <meta http-equiv="refresh" content="3;url={% url 'index' %}">
+{% endblock content %}
