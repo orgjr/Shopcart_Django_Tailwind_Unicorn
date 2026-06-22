@@ -3,13 +3,16 @@ from datetime import datetime
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 
 
 # return database registered users after the chosen date
 def get_users_created_after_date(year, month, day):
-    return User.objects.filter(date_joined__gt=datetime(year, month, day))
+    naive_datetime = datetime(year, month, day)
+    aware_datetime = timezone.make_aware(naive_datetime)
+    return User.objects.filter(date_joined__gt=aware_datetime)
 
 
 class Product(models.Model):
